@@ -1,5 +1,10 @@
 export type ServiceType = string;
 
+export enum SpheronDeploymentMode {
+    PROVIDER = "provider",
+    FIZZ = "fizz",
+}
+
 export interface InputConfig {
     appCpuUnits: number;
     appMemorySize: string;
@@ -11,7 +16,7 @@ export interface InputConfig {
     branchName: string;
     envVars: Record<string, string>;
     runCommands: string;
-    spheronDeploymentMode: string;
+    spheronDeploymentMode: SpheronDeploymentMode;
 }
 
 export interface OutputConfig {
@@ -26,7 +31,7 @@ export interface OutputConfig {
     branchName: string;
     env: Record<string, string>;
     runCommands?: string;
-    spheronDeploymentMode?: string;
+    spheronDeploymentMode?: SpheronDeploymentMode;
 }
 
 export interface ServiceDeploymentConfig {
