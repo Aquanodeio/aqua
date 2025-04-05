@@ -5,14 +5,14 @@ import {
     OutputConfig,
 } from "../types";
 import {
-    JUPYTER_DEFAULT_IMAGE,
     JUPYTER_DEFAULT_CPU,
     JUPYTER_DEFAULT_MEMORY,
     JUPYTER_DEFAULT_STORAGE,
     JUPYTER_DEFAULT_PORT,
     JUPYTER_DEFAULT_DURATION,
     SPHERON_DEPLOYMENT_MODE
-} from "./default.config";
+} from "../default.config";
+import { JUPYTER_DEFAULT_IMAGE } from "./image.config";
 
 export class JupyterService implements ServiceDeploymentConfig {
     getServiceType(): ServiceType {

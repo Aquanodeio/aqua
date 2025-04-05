@@ -10,8 +10,8 @@ import {
     APP_STORAGE_SIZE,
     DEPLOYMENT_DURATION,
     SPHERON_DEPLOYMENT_MODE,
-    USER_APP_IMAGE,
-} from "./default.config";
+} from "../default.config";
+import { USER_APP_IMAGE } from "./image.config";
 
 export class BackendService implements ServiceDeploymentConfig {
     getServiceType(): ServiceType {
