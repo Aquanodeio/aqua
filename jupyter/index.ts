@@ -10,32 +10,33 @@ import {
     JUPYTER_DEFAULT_STORAGE,
     JUPYTER_DEFAULT_PORT,
     JUPYTER_DEFAULT_DURATION,
-    SPHERON_DEPLOYMENT_MODE
 } from "../default.config";
-import { JUPYTER_DEFAULT_IMAGE } from "./image.config";
 
 export class JupyterService implements ServiceDeploymentConfig {
+    SERVICE_IMAGE = "jupyter/minimal-notebook";
+    SERVICE_TYPE = "JUPYTER";
+
     getServiceType(): ServiceType {
-        return ServiceType.JUPYTER;
+        return this.SERVICE_TYPE;
     }
 
     getDefaultDeploymentConfig(config: Partial<InputConfig>): OutputConfig {
         try {
             if (!config?.appPort) {
                 throw new Error(
-                    "App port is required for Aqua Backend Service"
+                    "App port is required for Jupyter Service"
                 );
             }
 
             const baseConfig: OutputConfig = {
-                serviceType: ServiceType.BACKEND,
+                serviceType: this.SERVICE_TYPE,
                 appPort: JUPYTER_DEFAULT_PORT,
-                spheronDeploymentMode: SPHERON_DEPLOYMENT_MODE,
+                spheronDeploymentMode: config?.spheronDeploymentMode,
                 deploymentDuration: JUPYTER_DEFAULT_DURATION,
                 appCpuUnits: JUPYTER_DEFAULT_CPU,
                 appMemorySize: JUPYTER_DEFAULT_MEMORY,
                 appStorageSize: JUPYTER_DEFAULT_STORAGE,
-                image: JUPYTER_DEFAULT_IMAGE,
+                image: this.SERVICE_IMAGE,
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
@@ -44,7 +45,7 @@ export class JupyterService implements ServiceDeploymentConfig {
             return baseConfig;
         } catch (error: any) {
             throw new Error(
-                `Failed to create default backend deployment config: ${error.message}`
+                `Failed to create default jupyter deployment config: ${error.message}`
             );
         }
     }
@@ -53,19 +54,19 @@ export class JupyterService implements ServiceDeploymentConfig {
         try {
             if (!config?.appPort) {
                 throw new Error(
-                    "App port is required for Aqua Backend Service"
+                    "App port is required for Jupyter Service"
                 );
             }
 
             const baseConfig: OutputConfig = {
-                serviceType: ServiceType.BACKEND,
+                serviceType: this.SERVICE_TYPE,
                 appPort: config?.appPort,
-                spheronDeploymentMode: SPHERON_DEPLOYMENT_MODE,
+                spheronDeploymentMode: config?.spheronDeploymentMode,
                 deploymentDuration: config?.deploymentDuration,
                 appCpuUnits: config?.appCpuUnits,
                 appMemorySize: config?.appMemorySize,
                 appStorageSize: config?.appStorageSize,
-                image: config?.image,
+                image: this.SERVICE_IMAGE,
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
@@ -74,7 +75,7 @@ export class JupyterService implements ServiceDeploymentConfig {
             return baseConfig;
         } catch (error: any) {
             throw new Error(
-                `Failed to create custom backend deployment config: ${error.message}`
+                `Failed to create custom jupyter deployment config: ${error.message}`
             );
         }
     }

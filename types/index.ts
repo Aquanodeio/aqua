@@ -1,7 +1,4 @@
-export enum ServiceType {
-    JUPYTER = "JUPYTER",
-    BACKEND = "BACKEND",
-}
+export type ServiceType = string;
 
 export interface InputConfig {
     appCpuUnits: number;
@@ -14,6 +11,7 @@ export interface InputConfig {
     branchName: string;
     envVars: Record<string, string>;
     runCommands: string;
+    spheronDeploymentMode: string;
 }
 
 export interface OutputConfig {
@@ -32,6 +30,8 @@ export interface OutputConfig {
 }
 
 export interface ServiceDeploymentConfig {
+    SERVICE_IMAGE: string;
+    SERVICE_TYPE: string;
     getServiceType(): ServiceType;
     getDefaultDeploymentConfig(config?: Partial<InputConfig>): OutputConfig;
     getCustomDeploymentConfig(config?: Partial<InputConfig>): OutputConfig;

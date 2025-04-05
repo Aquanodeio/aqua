@@ -1,1 +1,0 @@
-export const USER_APP_IMAGE = "arnavmehta7/auto-ci-cd:v1"

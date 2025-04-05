@@ -9,32 +9,33 @@ import {
     APP_MEMORY_SIZE,
     APP_STORAGE_SIZE,
     DEPLOYMENT_DURATION,
-    SPHERON_DEPLOYMENT_MODE,
 } from "../default.config";
-import { USER_APP_IMAGE } from "./image.config";
 
-export class BackendService implements ServiceDeploymentConfig {
+export class HostingService implements ServiceDeploymentConfig {
+    SERVICE_IMAGE = "arnavmehta7/auto-ci-cd:v1";
+    SERVICE_TYPE = "BACKEND";
+
     getServiceType(): ServiceType {
-        return ServiceType.BACKEND;
+        return this.SERVICE_TYPE;
     }
 
     getDefaultDeploymentConfig(config: Partial<InputConfig>): OutputConfig {
         try {
             if (!config?.appPort) {
                 throw new Error(
-                    "App port is required for Aqua Backend Service"
+                    "App port is required for Backend Service"
                 );
             }
 
             const baseConfig: OutputConfig = {
-                serviceType: ServiceType.BACKEND,
+                serviceType: this.SERVICE_TYPE,
                 appPort: config?.appPort,
-                spheronDeploymentMode: SPHERON_DEPLOYMENT_MODE,
+                spheronDeploymentMode: config?.spheronDeploymentMode,
                 deploymentDuration: DEPLOYMENT_DURATION,
                 appCpuUnits: APP_CPU_UNITS,
                 appMemorySize: APP_MEMORY_SIZE,
                 appStorageSize: APP_STORAGE_SIZE,
-                image: USER_APP_IMAGE,
+                image: this.SERVICE_IMAGE,
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
@@ -52,19 +53,19 @@ export class BackendService implements ServiceDeploymentConfig {
         try {
             if (!config?.appPort) {
                 throw new Error(
-                    "App port is required for Aqua Backend Service"
+                    "App port is required for Backend Service"
                 );
             }
 
             const baseConfig: OutputConfig = {
-                serviceType: ServiceType.BACKEND,
+                serviceType: this.SERVICE_TYPE,
                 appPort: config?.appPort,
-                spheronDeploymentMode: SPHERON_DEPLOYMENT_MODE,
+                spheronDeploymentMode: config?.spheronDeploymentMode,
                 deploymentDuration: config?.deploymentDuration,
                 appCpuUnits: config?.appCpuUnits,
                 appMemorySize: config?.appMemorySize,
                 appStorageSize: config?.appStorageSize,
-                image: config?.image,
+                image: this.SERVICE_IMAGE,
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
