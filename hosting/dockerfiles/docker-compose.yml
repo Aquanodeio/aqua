@@ -1,0 +1,11 @@
+services:
+  web:
+    image: builder:latest
+    # build:
+    #   context: .
+    ports:
+      - "3001:3001"
+    environment:
+      - RUN_COMMANDS=yarn install; yarn build; PORT=3001 yarn start
+      - REPO_URL=https://github.com/arnavmehta7/yakGPT
+      - BRANCH_NAME=main
