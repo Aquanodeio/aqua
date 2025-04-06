@@ -22,12 +22,6 @@ export class JupyterService implements ServiceDeploymentConfig {
 
     getDefaultDeploymentConfig(config: Partial<InputConfig>): OutputConfig {
         try {
-            if (!config?.appPort) {
-                throw new Error(
-                    "App port is required for Jupyter Service"
-                );
-            }
-
             const baseConfig: OutputConfig = {
                 serviceType: this.SERVICE_TYPE,
                 appPort: JUPYTER_DEFAULT_PORT,
