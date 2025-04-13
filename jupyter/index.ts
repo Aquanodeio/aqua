@@ -33,7 +33,12 @@ export class JupyterService implements ServiceDeploymentConfig {
                 image: this.SERVICE_IMAGE,
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
-                env: config?.envVars || {},
+                env: {
+                    JUPYTER_ENABLE_LAB: "yes",
+                    JUPYTER_TOKEN: "password", 
+                    JUPYTER_PASSWORD: "password",
+                    ...config?.envVars
+                },
             };
 
             return baseConfig;
