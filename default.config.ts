@@ -1,6 +1,6 @@
 export const APP_CPU_UNITS = 1;
-export const APP_MEMORY_SIZE = "0.5Gi";
-export const APP_STORAGE_SIZE = "0.5Gi";
+export const APP_MEMORY_SIZE = "1Gi";
+export const APP_STORAGE_SIZE = "1Gi";
 export const DEPLOYMENT_DURATION = "1h";
 
 export const JUPYTER_DEFAULT_CPU = 1;
