@@ -39,6 +39,7 @@ export class HostingService implements ServiceDeploymentConfig {
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
+                runCommands: config?.runCommands || undefined
             };
 
             return baseConfig;
@@ -69,6 +70,7 @@ export class HostingService implements ServiceDeploymentConfig {
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
+                runCommands: config?.runCommands || undefined
             };
 
             return baseConfig;
