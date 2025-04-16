@@ -12,7 +12,7 @@ import {
 } from "../default.config";
 
 export class HostingService implements ServiceDeploymentConfig {
-    SERVICE_IMAGE = "arnavmehta7/auto-ci-cd:v1";
+    SERVICE_IMAGE = "arnavmehta7/auto-ci-cd:stats";
     SERVICE_TYPE = "BACKEND";
 
     getServiceType(): ServiceType {
@@ -39,6 +39,7 @@ export class HostingService implements ServiceDeploymentConfig {
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
+                runCommands: config?.runCommands || undefined
             };
 
             return baseConfig;
@@ -69,6 +70,7 @@ export class HostingService implements ServiceDeploymentConfig {
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
                 env: config?.envVars || {},
+                runCommands: config?.runCommands || undefined
             };
 
             return baseConfig;
