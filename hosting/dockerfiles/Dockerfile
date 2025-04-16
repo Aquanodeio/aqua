@@ -16,7 +16,7 @@ ENV NODE_PATH $NVM_DIR/versions/node/$DEFAULT_NODE_VERSION/bin
 ENV PATH $NODE_PATH:$PATH
 
 # Install global npm packages
-RUN apt-get install -y python3 python3-pip
+RUN apt-get update && apt-get install -y python3 python3-pip
 RUN npm install -g serve astro http-server yarn pnpm
 
 # Default environment variables
@@ -31,4 +31,4 @@ COPY monitor.js /app/monitor.js
 RUN echo '#!/bin/bash\nnode /app/monitor.js &\n/app/main.sh' > /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
-CMD ["/app/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
