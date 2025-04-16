@@ -27,4 +27,8 @@ WORKDIR /app
 COPY javascript/*.sh common/*.sh /app/
 RUN chmod +x *.sh
 
-CMD ["/app/main.sh"]
+COPY monitor.js /app/monitor.js
+RUN /bin/sh -c echo '#!/bin/bash\nnode /app/monitor.js &\n/app/main.sh' > /app/entrypoint.sh
+RUN /bin/sh -c chmod +x /app/entrypoint.sh
+
+CMD ["/app/entrypoint.sh"]
