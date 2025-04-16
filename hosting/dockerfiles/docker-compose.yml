@@ -1,8 +1,8 @@
 services:
   web:
-    image: builder:latest
-    # build:
-    #   context: .
+    # image: builder:latest
+    build:
+      context: .
     ports:
       - "3001:3001"
     environment:
