@@ -12,7 +12,7 @@ import {
 } from "../default.config";
 
 export class HostingService implements ServiceDeploymentConfig {
-    SERVICE_IMAGE = "arnavmehta7/auto-ci-cd:v1";
+    SERVICE_IMAGE = "arnavmehta7/auto-ci-cd:s5";
     SERVICE_TYPE = "BACKEND";
 
     getServiceType(): ServiceType {
