@@ -26,6 +26,11 @@ export class HostingService implements ServiceDeploymentConfig {
                     "App port is required for Backend Service"
                 );
             }
+            const disablePull = config?.disablePull || false;
+            const envVars = config?.envVars || {};
+            if (disablePull) {
+                envVars.DISABLE_PULL = "true";
+            }
 
             const baseConfig: OutputConfig = {
                 serviceType: this.SERVICE_TYPE,
@@ -38,8 +43,8 @@ export class HostingService implements ServiceDeploymentConfig {
                 image: this.SERVICE_IMAGE,
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
-                env: config?.envVars || {},
-                runCommands: config?.runCommands || undefined
+                env: envVars,
+                runCommands: config?.runCommands || undefined,
             };
 
             return baseConfig;
@@ -57,6 +62,11 @@ export class HostingService implements ServiceDeploymentConfig {
                     "App port is required for Backend Service"
                 );
             }
+            const disablePull = config?.disablePull || false;
+            const envVars = config?.envVars || {};
+            if (disablePull) {
+                envVars.DISABLE_PULL = "true";
+            }
 
             const baseConfig: OutputConfig = {
                 serviceType: this.SERVICE_TYPE,
@@ -69,8 +79,8 @@ export class HostingService implements ServiceDeploymentConfig {
                 image: this.SERVICE_IMAGE,
                 repoUrl: config?.repoUrl,
                 branchName: config?.branchName || "main",
-                env: config?.envVars || {},
-                runCommands: config?.runCommands || undefined
+                env: envVars,
+                runCommands: config?.runCommands || undefined,
             };
 
             return baseConfig;

@@ -28,7 +28,7 @@ else
 fi
 
 # for disabling pull
-if [ -n "$DISABLE_PULL" ]; then
+if [ "$DISABLE_PULL" = "true" ]; then
   echo "[*] Latest changes will not be fetched. Pull disabled..."
   while true; do sleep 10000; done
 fi

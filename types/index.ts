@@ -17,6 +17,7 @@ export interface InputConfig {
     envVars: Record<string, string>;
     runCommands: string;
     spheronDeploymentMode: SpheronDeploymentMode;
+    disablePull?: boolean | null; // if false, the latest changes will be fetched (auto-ci-cd-like)
 }
 
 export interface OutputConfig {
