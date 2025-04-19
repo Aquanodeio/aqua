@@ -26,7 +26,7 @@ export class HostingService implements ServiceDeploymentConfig {
                     "App port is required for Backend Service"
                 );
             }
-            const disablePull = config?.disablePull || false;
+            const disablePull = config?.disablePull || true;
             const envVars = config?.envVars || {};
             if (disablePull) {
                 envVars.DISABLE_PULL = "true";
@@ -62,7 +62,7 @@ export class HostingService implements ServiceDeploymentConfig {
                     "App port is required for Backend Service"
                 );
             }
-            const disablePull = config?.disablePull || false;
+            const disablePull = config?.disablePull || true;
             const envVars = config?.envVars || {};
             if (disablePull) {
                 envVars.DISABLE_PULL = "true";
